@@ -1,0 +1,367 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Zakho Private Institute Typing Competition</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@500;700&display=swap">
+<style>
+/* Layout: winners podium on top, then the typing area (left) beside the full ranking (right); stacks on phones. */
+:root{
+  --bg:#EDF0F4; --surface:#FFFFFF; --ink:#0E1621; --muted:#5A6678; --line:#D5DBE4;
+  --accent:#2B50FF; --accent-ink:#FFFFFF;
+  --ok:#12805C; --okbg:#D6F2E6; --bad:#C0273B; --badbg:#FAD9DE;
+  --gold:#B7791F; --silver:#6B7686; --bronze:#A5602B;
+  --font-display:"Space Grotesk","Segoe UI",system-ui,sans-serif;
+  --font-body:"Inter","Segoe UI",system-ui,sans-serif;
+  --font-mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0B1118; --surface:#131B26; --ink:#E8EDF4; --muted:#93A0B3; --line:#243042;
+    --accent:#7F9BFF; --accent-ink:#0B1118;
+    --ok:#4ADE9E; --okbg:#12382B; --bad:#FF7B8D; --badbg:#42171E;
+    --gold:#E3B341; --silver:#AEB8C6; --bronze:#D58A52; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0B1118; --surface:#131B26; --ink:#E8EDF4; --muted:#93A0B3; --line:#243042;
+  --accent:#7F9BFF; --accent-ink:#0B1118;
+  --ok:#4ADE9E; --okbg:#12382B; --bad:#FF7B8D; --badbg:#42171E;
+  --gold:#E3B341; --silver:#AEB8C6; --bronze:#D58A52; color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font:16px/1.5 var(--font-body);
+  padding-block:28px 56px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.wrap{max-width:1120px;margin:0 auto;display:flex;flex-direction:column;gap:24px}
+h1,h2,h3{font-family:var(--font-display);margin:0;text-wrap:balance;line-height:1.15}
+h1{font-size:clamp(30px,6vw,48px);letter-spacing:-.02em}
+h2{font-size:20px}
+.eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:600}
+header p{margin:8px 0 0;color:var(--muted);max-width:60ch}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:20px}
+button{font:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+
+/* podium */
+.podium-card{padding:20px 20px 0;overflow:hidden}
+.podium-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:16px}
+.podium-head .live{font-size:13px;color:var(--muted)}
+.podium{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;align-items:end;max-width:760px;margin:0 auto}
+.slot{display:flex;flex-direction:column;align-items:center;gap:2px;min-width:0;text-align:center}
+.slot .who{font-family:var(--font-display);font-weight:700;font-size:clamp(14px,3.4vw,20px);max-width:100%;overflow-wrap:anywhere}
+.slot .pts{font:500 13px var(--font-mono);color:var(--muted);margin-bottom:8px}
+.slot .block{width:100%;display:flex;align-items:flex-start;justify-content:center;padding-top:10px;border-radius:10px 10px 0 0;
+  font:700 clamp(26px,6vw,40px) var(--font-display);color:var(--surface)}
+.slot.r1 .block{height:132px;background:var(--gold)}
+.slot.r2 .block{height:100px;background:var(--silver)}
+.slot.r3 .block{height:76px;background:var(--bronze)}
+.slot.r1{order:2}.slot.r2{order:1}.slot.r3{order:3}
+.slot.empty .who{color:var(--muted);font-weight:500}
+.slot.empty .block{opacity:.35}
+
+/* main grid */
+.grid{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:24px;align-items:start}
+@media (max-width:860px){.grid{grid-template-columns:minmax(0,1fr)}}
+.stack{display:flex;flex-direction:column;gap:16px;min-width:0}
+
+/* join */
+#join{display:flex;gap:10px;flex-wrap:wrap}
+#join label{flex:1 1 100%;font-weight:600}
+#name{flex:1 1 200px;min-width:0;font:inherit;padding:12px 14px;border-radius:8px;border:1px solid var(--line);background:var(--bg);color:var(--ink)}
+.btn{background:var(--accent);color:var(--accent-ink);border:0;border-radius:8px;padding:12px 20px;font-weight:600}
+.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.err{color:var(--bad);font-size:14px;min-height:20px;margin:6px 0 0}
+.hello{display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap}
+.hello b{font-family:var(--font-display);font-size:20px}
+.note{font-size:14px;color:var(--muted);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:10px 12px}
+
+/* levels */
+.levels{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+@media (max-width:620px){.levels{grid-template-columns:minmax(0,1fr)}}
+.lv{display:flex;flex-direction:column;gap:6px}
+.lv .tag{font-size:12px;letter-spacing:.1em;text-transform:uppercase;font-weight:700}
+.lv.l1 .tag{color:var(--ok)}.lv.l2 .tag{color:var(--gold)}.lv.l3 .tag{color:var(--bad)}
+.lv p{margin:0;font-size:14px;color:var(--muted)}
+.lv .best{font:500 13px var(--font-mono);min-height:20px}
+.lv .btn{margin-top:auto}
+
+/* typing */
+.typing{display:flex;flex-direction:column;gap:14px}
+.stats{display:flex;gap:20px;flex-wrap:wrap;font:500 14px var(--font-mono);color:var(--muted)}
+.stats b{color:var(--ink);font-size:20px;margin-right:4px}
+.textbox{position:relative;border:1px solid var(--line);border-radius:10px;background:var(--bg);padding:18px;cursor:text}
+.passage{font:400 clamp(16px,2.6vw,20px)/1.85 var(--font-mono);overflow-wrap:anywhere;white-space:pre-wrap;color:var(--muted);user-select:none}
+.passage .ok{color:var(--ink)}
+.passage .bad{color:var(--bad);background:var(--badbg);border-radius:3px}
+.passage .cur{background:var(--accent);color:var(--accent-ink);border-radius:3px}
+#ta{position:absolute;inset:0;width:100%;height:100%;opacity:0;resize:none;border:0;cursor:text}
+.textbox:focus-within{outline:3px solid var(--accent)}
+.hint{font-size:14px;color:var(--muted);margin:0}
+.result{display:flex;flex-direction:column;gap:14px}
+.res-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.res-grid div{border:1px solid var(--line);border-radius:8px;padding:12px}
+.res-grid span{display:block;font-size:12px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
+.res-grid b{font:700 26px var(--font-display)}
+.verdict{padding:10px 12px;border-radius:8px;font-weight:600}
+.verdict.pass{background:var(--okbg);color:var(--ok)}
+.verdict.fail{background:var(--badbg);color:var(--bad)}
+.row{display:flex;gap:10px;flex-wrap:wrap}
+
+/* table */
+.tbl{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th,td{padding:9px 8px;text-align:left;border-bottom:1px solid var(--line);white-space:nowrap}
+th{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+td.n,th.n{text-align:right;font-family:var(--font-mono);font-variant-numeric:tabular-nums}
+td.name{white-space:normal;overflow-wrap:anywhere;font-weight:600;min-width:90px}
+tr.me td{background:var(--okbg)}
+.empty-msg{color:var(--muted);margin:6px 0 0}
+[hidden]{display:none!important}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow">Zakho Private Institute</div>
+    <h1>Typing Competition</h1>
+    <p>Write your name, then type easy texts about computers in three levels. The 3 students with the best scores win. Winners are chosen automatically.</p>
+  </header>
+
+  <section class="card podium-card" aria-labelledby="pt">
+    <div class="podium-head"><h2 id="pt">The 3 winners</h2><span class="live" id="liveNote">Chosen automatically by total points</span></div>
+    <div class="podium" id="podium"></div>
+  </section>
+
+  <div class="grid">
+    <div class="stack">
+      <section class="card" id="joinCard">
+        <form id="join">
+          <label for="name">Your name</label>
+          <input id="name" maxlength="20" autocomplete="name" placeholder="Example: Sara Ahmed" required>
+          <button class="btn" type="submit">Join the competition</button>
+        </form>
+        <p class="err" id="joinErr" role="alert"></p>
+      </section>
+      <section class="card hello" id="helloCard" hidden>
+        <div><span class="eyebrow">Playing as</span><br><b id="helloName"></b></div>
+        <div class="row"><span class="eyebrow" style="align-self:center">Total points</span><b id="helloTotal" style="font-family:var(--font-mono);font-size:22px">0</b></div>
+      </section>
+      <div class="note" id="localNote" hidden>Scores are saved on this computer only. To join the shared ranking, ask your teacher to share this page with Contributor access.</div>
+
+      <section class="levels" id="levels" aria-label="Levels"></section>
+
+      <section class="card typing" id="play" hidden>
+        <div class="stats" aria-live="off">
+          <span><b id="sTime">0:00</b>time</span>
+          <span><b id="sWpm">0</b>WPM</span>
+          <span><b id="sProg">0%</b>done</span>
+        </div>
+        <div class="textbox" id="box">
+          <div class="passage" id="passage"></div>
+          <textarea id="ta" aria-label="Type the text shown here" autocapitalize="off" autocomplete="off" autocorrect="off" spellcheck="false"></textarea>
+        </div>
+        <p class="hint" id="hint">Click the text and start typing. The timer starts with your first key.</p>
+      </section>
+
+      <section class="card result" id="result" hidden></section>
+    </div>
+
+    <section class="card" aria-labelledby="rt">
+      <h2 id="rt" style="margin-bottom:6px">Dashboard: all students</h2>
+      <p class="hint" id="counts" style="margin-bottom:12px"></p>
+      <div class="tbl" id="board"></div>
+      <p class="hint" style="margin-top:12px">Points = speed × accuracy² × level weight (Level 1 ×1, Level 2 ×1.5, Level 3 ×2). Your best score on each level counts. Ties go to the student who scored first.</p>
+    </section>
+  </div>
+</div>
+
+<script>
+(function(){
+var LV=[
+ {n:1,tag:"Easy",w:1,desc:"Very easy. Short sentences, small letters only.",
+  text:"a computer has a screen and a keyboard. we use the mouse to click. we type words to write a letter. a computer helps us learn."},
+ {n:2,tag:"A little hard",w:1.5,desc:"A little harder. Capital letters and commas.",
+  text:"A computer can keep pictures, music, and games. The keyboard has letters, numbers, and a space bar. Students use computers to write, to study, and to play. Typing fast and well is a good skill."},
+ {n:3,tag:"Hard",w:2,desc:"Hard. Numbers and symbols.",
+  text:"Every computer needs a CPU, RAM, and a hard drive. The CPU thinks, the RAM remembers for a short time, and the hard drive keeps files. A strong password has letters, numbers (like 2026) and symbols!"}
+];
+var PASS=80;
+function $(id){return document.getElementById(id)}
+function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")}
+function lsGet(k,d){try{var v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}}
+function lsSet(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
+
+var db=null,uid=null,canWrite=null,mode=null,dbBoard=null;
+var me=null,cur=null,typed="",t0=0,timer=null,finished=false,saveChain=Promise.resolve();
+
+function total(best){var t=0;for(var k in best){t+=best[k].s||0}return t}
+
+/* ---------- shared data (optional) ---------- */
+async function init(){
+  try{
+    var c=window.claude; if(!c||!c.use) return;
+    var user=await c.use("user");
+    db=await c.use("db");
+    if(user){uid=await user.id(); try{canWrite=await user.can("data.write")}catch(e){}}
+    if(db){
+      db.collection("players").orderBy("total","desc").limit(100).onSnapshot(function(s){
+        dbBoard=s.docs.map(function(d){var o=d.data()||{};o.id=d.id;return o});
+        renderBoard();
+      },function(){dbBoard=null;renderBoard()});
+    }
+  }catch(e){}
+  renderBoard();
+}
+
+function localPlayers(){var m=lsGet("kc_players",{});return Object.keys(m).map(function(k){return m[k]})}
+function boardData(){
+  var list=(dbBoard&&mode!=="local")?dbBoard:localPlayers();
+  return list.slice().sort(function(a,b){
+    return ((b.total||0)-(a.total||0))||((a.updatedAt||0)-(b.updatedAt||0));
+  });
+}
+
+/* ---------- rendering ---------- */
+function renderBoard(){
+  var all=boardData();
+  var list=all.filter(function(p){return (p.total||0)>0});
+  $("counts").textContent=all.length+(all.length===1?" student has":" students have")+" joined. "+list.length+" with a score.";
+  var ord=["","1st","2nd","3rd"];
+  var html="";
+  for(var r=1;r<=3;r++){
+    var p=list[r-1];
+    html+='<div class="slot r'+r+(p?'':' empty')+'"><div class="who">'+(p?esc(p.name):'Waiting')+'</div><div class="pts">'+(p?Math.round(p.total)+' pts':'no score yet')+'</div><div class="block" aria-label="'+ord[r]+' place">'+r+'</div></div>';
+  }
+  $("podium").innerHTML=html;
+  var b=$("board");
+  if(!all.length){b.innerHTML='<p class="empty-msg">No students yet. Each name appears here as soon as a student joins.</p>';return}
+  var t='<table><thead><tr><th class="n">#</th><th>Name</th><th class="n">L1</th><th class="n">L2</th><th class="n">L3</th><th class="n">Total</th></tr></thead><tbody>';
+  all.slice(0,100).forEach(function(p,i){
+    var bs=p.best||{};
+    function c(n){return '<td class="n">'+(bs[n]?Math.round(bs[n].s):'–')+'</td>'}
+    var scored=(p.total||0)>0;
+    t+='<tr'+(me&&p.id===me.id?' class="me"':'')+'><td class="n">'+(scored?(i+1):'–')+'</td><td class="name">'+esc(p.name)+'</td>'+c(1)+c(2)+c(3)+'<td class="n"><b>'+Math.round(p.total||0)+'</b></td></tr>';
+  });
+  b.innerHTML=t+'</tbody></table>';
+}
+
+function renderLevels(){
+  var h="";
+  LV.forEach(function(L,i){
+    var b=me&&me.best[L.n];
+    var unlocked=me&&(i===0||me.best[LV[i-1].n]);
+    var label=!me?"Join first":(unlocked?(b?"Play again":"Start"):"Locked");
+    h+='<div class="card lv l'+L.n+'"><span class="tag">Level '+L.n+' · '+L.tag+'</span><h3>'+L.text.split(" ").length+' words</h3><p>'+L.desc+'</p>'+
+       '<div class="best">'+(b?'Best: '+Math.round(b.s)+' pts · '+Math.round(b.w)+' WPM':(unlocked?'Not played yet':(me?'Finish Level '+(L.n-1)+' to unlock':'')))+'</div>'+
+       '<button class="btn" data-i="'+i+'"'+(unlocked?'':' disabled')+'>'+label+'</button></div>';
+  });
+  $("levels").innerHTML=h;
+  if(me){$("helloTotal").textContent=Math.round(total(me.best))}
+}
+
+function paint(){
+  var t=cur.text,h="";
+  for(var i=0;i<t.length;i++){
+    var cls=i<typed.length?(typed[i]===t[i]?"ok":"bad"):(i===typed.length?"cur":"");
+    h+=cls?'<span class="'+cls+'">'+esc(t[i])+'</span>':esc(t[i]);
+  }
+  $("passage").innerHTML=h;
+}
+function correctCount(){var c=0;for(var i=0;i<typed.length;i++){if(typed[i]===cur.text[i])c++}return c}
+function fmt(ms){var s=Math.floor(ms/1000);return Math.floor(s/60)+":"+("0"+(s%60)).slice(-2)}
+function live(){
+  if(!t0)return;
+  var ms=performance.now()-t0;
+  $("sTime").textContent=fmt(ms);
+  var wpm=ms>1500?(correctCount()/5)/(ms/60000):0;
+  $("sWpm").textContent=Math.round(wpm);
+  $("sProg").textContent=Math.round(typed.length/cur.text.length*100)+"%";
+}
+
+/* ---------- flow ---------- */
+function startLevel(i){
+  cur=LV[i];typed="";t0=0;finished=false;
+  clearInterval(timer);
+  $("result").hidden=true;$("play").hidden=false;
+  $("ta").value="";
+  $("sTime").textContent="0:00";$("sWpm").textContent="0";$("sProg").textContent="0%";
+  paint();
+  $("play").scrollIntoView({block:"nearest"});
+  $("ta").focus();
+}
+
+function finish(){
+  if(finished)return;finished=true;
+  clearInterval(timer);
+  var ms=performance.now()-t0,len=cur.text.length,cc=correctCount();
+  var wpm=(cc/5)/(ms/60000),acc=cc/len*100;
+  var pass=true;
+  var score=wpm*Math.pow(acc/100,2)*cur.w;
+  var prev=me.best[cur.n],improved=false;
+  if(pass&&(!prev||score>prev.s)){me.best[cur.n]={s:Math.round(score*10)/10,w:Math.round(wpm*10)/10,a:Math.round(acc*10)/10};improved=true;save()}
+  $("play").hidden=true;
+  var r=$("result");r.hidden=false;
+  var hasNext=pass&&cur.n<3;
+  r.innerHTML='<h2>Level '+cur.n+' finished</h2>'+
+    '<div class="res-grid"><div><span>Speed</span><b>'+Math.round(wpm)+' WPM</b></div><div><span>Accuracy</span><b>'+Math.round(acc)+'%</b></div><div><span>Points</span><b>'+(pass?Math.round(score):0)+'</b></div></div>'+
+    '<div class="verdict pass">'+(cur.n<3?'Well done! Level '+(cur.n+1)+' is open.':'Well done! You finished all 3 levels.')+'</div>'+
+    '<div class="row">'+(hasNext?'<button class="btn" id="next">Go to Level '+(cur.n+1)+'</button>':'')+'</div>';
+  if(hasNext)$("next").onclick=function(){startLevel(cur.n)};
+  renderLevels();
+}
+
+function saveLocal(rec){
+  var m=lsGet("kc_players",{});rec.id=me.id;m[me.id]=rec;lsSet("kc_players",m);renderBoard();
+}
+function save(){
+  var rec={name:me.name,best:me.best,total:total(me.best),joinedAt:me.joinedAt||Date.now(),updatedAt:Date.now()};
+  if(mode==="db"){
+    saveChain=saveChain.then(function(){return db.doc("players/"+me.id).set(rec)}).catch(function(err){
+      mode="local";$("localNote").hidden=false;saveLocal(rec);
+    });
+  }else{saveLocal(rec)}
+}
+
+/* ---------- events ---------- */
+$("join").addEventListener("submit",async function(e){
+  e.preventDefault();
+  var name=$("name").value.trim().replace(/\s+/g," ");
+  if(name.length<2){$("joinErr").textContent="Please type your name (at least 2 letters).";return}
+  $("joinErr").textContent="";
+  var id,best={};
+  if(db&&uid&&canWrite!==false){
+    mode="db";id=uid;
+    try{var s=await db.doc("players/"+uid).get();if(s.exists){best=(s.data()||{}).best||{}}}catch(x){}
+  }else{
+    mode="local";id="n_"+name.toLowerCase().replace(/[^a-z0-9]+/g,"-");
+    var m=lsGet("kc_players",{});if(m[id])best=m[id].best||{};
+    $("localNote").hidden=false;
+  }
+  me={id:id,name:name,best:best};
+  lsSet("kc_name",name);
+  $("joinCard").hidden=true;$("helloCard").hidden=false;$("helloName").textContent=name;
+  save();
+  renderLevels();renderBoard();
+});
+$("levels").addEventListener("click",function(e){
+  var b=e.target.closest("button[data-i]");if(!b||b.disabled)return;
+  startLevel(+b.getAttribute("data-i"));
+});
+$("box").addEventListener("click",function(){$("ta").focus()});
+var ta=$("ta");
+ta.addEventListener("input",function(){
+  if(finished||!cur)return;
+  var v=ta.value.replace(/\n/g,"").slice(0,cur.text.length);
+  ta.value=v;typed=v;
+  if(!t0&&v.length){t0=performance.now();timer=setInterval(live,250)}
+  paint();live();
+  if(typed.length>=cur.text.length)finish();
+});
+ta.addEventListener("keydown",function(e){if(e.key==="Enter")e.preventDefault()});
+["paste","cut","drop"].forEach(function(n){ta.addEventListener(n,function(e){e.preventDefault()})});
+
+var saved=lsGet("kc_name","");if(typeof saved==="string"&&saved)$("name").value=saved;
+renderLevels();renderBoard();init();
+})();
+</script>
+
+</body></html>
